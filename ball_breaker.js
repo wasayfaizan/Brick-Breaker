@@ -18,7 +18,7 @@ let paddleX = (canvas.width - paddleWidth) / 2; // Starting x position of the pa
 
 // Brick properties
 const brickRowCount = 5;
-const brickColumnCount = 8;
+const brickColumnCount = 9;
 const brickWidth = 75;
 const brickHeight = 20;
 const brickPadding = 10;
@@ -42,6 +42,9 @@ let score = 0;
 
 // Game status tracking
 let gameWon = false;
+
+// Load the paddle hit sound
+const paddleHitSound = new Audio('paddle_hit.mp3');
 
 // Event listeners for paddle movement
 document.addEventListener("keydown", keyDownHandler, false);
@@ -127,6 +130,10 @@ function drawWinningMessage() {
     context.font = "32px Arial";
     context.fillStyle = "#ecf0f1";
     context.fillText("Congratulations, You Won!", 70, canvas.height / 2);
+
+    // Play game completed sound
+    const gameCompletedSound = new Audio('game_completed.mp3');
+    gameCompletedSound.play();
 }
 
 // Draws the game over message and displays a play again button
@@ -164,6 +171,7 @@ function collisionDetection() {
                     dy = -dy; // Reverse the ball direction
                     brick.status = 0; // Break the brick
                     score += 10; // Increment score by 10 for each brick broken
+                    paddleHitSound.play(); // Play sound when a brick breaks
                 }
             }
         }
@@ -189,12 +197,14 @@ function update() {
         // Bounce off the walls
         if (x + dx > canvas.width - ballRadius || x + dx < ballRadius) {
             dx = -dx;
+            paddleHitSound.play(); // Play sound when ball hits the left or right wall
         }
         if (y + dy < ballRadius) {
             dy = -dy;
         } else if (y + dy > canvas.height - ballRadius) {
             if (x > paddleX && x < paddleX + paddleWidth) {
                 dy = -dy;
+                paddleHitSound.play(); // Play sound when ball hits the paddle
             } else {
                 // Game over condition when the ball misses the paddle
                 drawGameOverMessage();
@@ -206,9 +216,9 @@ function update() {
         y += dy;
 
         if (rightPressed && paddleX < canvas.width - paddleWidth) {
-            paddleX += 7;
+            paddleX += 10; // Increased paddle speed
         } else if (leftPressed && paddleX > 0) {
-            paddleX -= 7;
+            paddleX -= 10; // Increased paddle speed
         }
 
         requestAnimationFrame(update);
