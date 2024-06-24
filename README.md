@@ -34,9 +34,10 @@
 
   <h2>Game Over</h2>
     <p>If the ball misses the paddle and falls below the canvas, the game will be over. A game over message will be displayed along with your score. You can click the "Play Again" button to restart the game.</p>
-    
-<img  width="356" alt="Screenshot 2024-06-24 at 1 21 28 PM" src="https://github.com/wasayfaizan/Brick-Breaker/assets/91233999/19e830c8-e3e0-4217-b865-21868a9464d4">
 
+<p align=center>
+<img  width="500" alt="Screenshot 2024-06-24 at 1 21 28 PM" src="https://github.com/wasayfaizan/Brick-Breaker/assets/91233999/19e830c8-e3e0-4217-b865-21868a9464d4">
+</p>
 
 </body>
 </html>
