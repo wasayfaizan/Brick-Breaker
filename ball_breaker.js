@@ -44,7 +44,7 @@ let score = 0;
 let gameWon = false;
 
 // Load the paddle hit sound
-const paddleHitSound = new Audio('paddle_hit.mp3');
+const paddleHitSound = new Audio('sound/paddle_hit.mp3');
 
 // Event listeners for paddle movement
 document.addEventListener("keydown", keyDownHandler, false);
@@ -132,7 +132,7 @@ function drawWinningMessage() {
     context.fillText("Congratulations, You Won!", 70, canvas.height / 2);
 
     // Play game completed sound
-    const gameCompletedSound = new Audio('game_completed.mp3');
+    const gameCompletedSound = new Audio('sound/game_completed.mp3');
     gameCompletedSound.play();
 }
 
